@@ -1,4 +1,4 @@
 # leetcode_question
 
-solve leetcode 
+solve leetcode diary
 __
