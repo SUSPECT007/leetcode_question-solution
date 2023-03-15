@@ -12,6 +12,7 @@ In a complete binary tree, every level, except possibly the last, is completely 
 Constraints:
 
 The number of nodes in the tree is in the range [1, 100].
+
 1 <= Node.val <= 1000
 
 https://leetcode.com/problems/check-completeness-of-a-binary-tree/description/
