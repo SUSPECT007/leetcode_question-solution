@@ -1,0 +1,85 @@
+//
+//runtime error
+/*class Trie {
+    vector<string> trire;
+    int BF_find(const string & ob,const string &pat){
+        int i=0,j=0;
+        int n=ob.size(),m=pat.size();
+        while (i<n&&j<m&&m-j<=n-i){
+            if(ob[i]==pat[i]){i++;j++;}
+            else {i=i-j+1;j=0;}
+        }
+        if (j>=m) return i-j;
+        else return -1;
+    }
+public:
+    Trie() {
+        trire.clear();
+    }
+    
+    void insert(string word) {
+        trire.push_back(word);
+    }
+    
+    bool search(string word) {
+        vector<string> :: iterator it =find(trire.begin(),trire.end(),word);
+        if (it!=trire.end()) return true;
+        else return false;
+    }
+    
+    bool startsWith(string prefix) {
+        int n = trire.size(),p=prefix.size();
+        for(int i =0;i<n;i++){
+            int flag=BF_find(trire[i],prefix);
+            if (flag!=-1) return true;
+               
+        }
+        return false;
+    }
+};*/
+class Trie {
+    bool isend;
+    vector<Trie*> son;
+public:
+    Trie():son(26), isend(false){
+        
+    }
+    
+    void insert(string word) {
+        Trie* temp =this;
+        for(char c : word){
+            int i = c-'a';
+            if (temp->son[i]==NULL) temp->son[i]=new Trie;
+            temp=temp->son[i];
+        }
+        temp->isend=true;
+    }
+    
+    bool search(string word) {
+        Trie* temp =this;
+        for (char c : word){
+            int i =c-'a';
+            if (temp->son[i]==NULL) return false;
+            temp=temp->son[i];
+        }
+        return temp->isend;
+    }
+    
+    bool startsWith(string prefix) {
+        Trie* temp =this;
+        for (char c : prefix){
+            int i =c-'a';
+            if (temp->son[i]==NULL) return false;
+            temp=temp->son[i];
+        }
+        return temp;
+    }
+};
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
