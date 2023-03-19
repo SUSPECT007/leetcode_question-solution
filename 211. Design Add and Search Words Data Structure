@@ -1,0 +1,53 @@
+class WordDictionary {
+    bool isend;
+    vector<WordDictionary*> son;
+    bool sub_search(WordDictionary* node,int pos,const string & w){
+        if(node==NULL) return false;
+        if(pos==w.size()) return node->isend;
+        if (w[pos]=='.'){
+            //if(node&&pos==w.size() &&node->isend) return true;
+            ++pos;
+            for (int i=0;i<26;i++)
+                 {if(sub_search(node->son[i], pos,w))return true;}
+            return false;
+        }
+        else{
+            int x=w[pos]-'a';
+            //node=node->son[x];
+            //if(node&&pos==w.size()-1 && node->isend) return true;
+            ++pos;
+            //if(node->son[x]) 
+            return sub_search(node->son[x], pos,w);
+        }
+        
+        return false;
+
+
+    }
+public:
+    WordDictionary():isend(false), son(26) {
+    }
+    
+    void addWord(string word) {
+        WordDictionary* node=this;int x;
+        for (char ch:word){
+            x=ch-'a';
+            if(!node->son[x])node->son [x]=new WordDictionary;
+            node=node->son[x];
+        }
+        node->isend=true;
+        
+    }
+    
+    bool search(string word) {
+        WordDictionary* node=this;
+        return sub_search( node,0,word);
+    }
+};
+
+/**
+ * Your WordDictionary object will be instantiated and called as such:
+ * WordDictionary* obj = new WordDictionary();
+ * obj->addWord(word);
+ * bool param_2 = obj->search(word);
+ */
