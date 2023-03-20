@@ -19,3 +19,27 @@ public:
         
     }
 };
+
+//**************************************************22222222222*********************************************
+class Solution {
+public:
+    bool canPlaceFlowers(vector<int>& flowerbed, int n) {
+        int flag=1,size=flowerbed.size();
+        if((size==1&&flowerbed[0]==0&&n<=1)||n==0) return true;else if(size==1) return false;
+        for(int i =0;i<size;i++){
+            if(i==0&& i+1<size && flowerbed[i+1]==0&&flowerbed[i]==0) {
+                flowerbed[i]=1;--n;continue;
+            }
+            if(i>0 &&i<size-1 &&flowerbed[i]==0 &&flowerbed[i-1]==0 &&flowerbed[i+1]==0 ){
+                flowerbed[i]=1;--n;continue;
+            }
+            if(i==size-1&&flowerbed[i]==0&&flowerbed[i-1]==0){
+                flowerbed[i]=1;--n;break;
+            }
+        }
+            
+        if(n<=0) return true;
+        return false;
+        
+    }
+};
