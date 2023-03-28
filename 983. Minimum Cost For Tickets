@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int mincostTickets(vector<int>& days, vector<int>& costs) {
+        int n=days.size();
+        vector<int> dp(n);
+        dp[0]=min({costs[0],costs[1],costs[2]});
+        for(int i=1;i<n;i++){
+            int lastw=i,lastm=i;
+            while(lastw>=0&&days[lastw]+7>days[i]) --lastw;
+            while(lastm>=0&&days[lastm]+30>days[i]) --lastm;
+            dp[i] = dp[i-1]+costs[0];
+            if(lastw!=-1)  dp[i]=min(dp[i],dp[lastw]+costs[1]);
+            else dp[i]=min(dp[i],costs[1]);
+            if(lastm!=-1)  dp[i]=min(dp[i],dp[lastm]+costs[2]);
+            else dp[i]=min(dp[i],costs[2]);
+        }
+        return dp[n-1];
+
+    
+    
+    }
+};
