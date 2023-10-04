@@ -1,0 +1,46 @@
+class MyHashMap {
+    class hash{
+        public:
+        int key,value;
+        hash(int a,int b):key(a),value(b){}
+    };
+    vector<hash> xtemp;
+    vector<hash>::iterator search(int key){
+        for(vector<hash>::iterator it=xtemp.begin();it<xtemp.end();++it)
+        if(it->key==key) return it;
+
+        return xtemp.end();
+    }
+
+
+public:
+    MyHashMap() {
+        
+    }
+    
+    void put(int key, int value) {
+        vector<hash>::iterator it=search(key);
+        if (it==xtemp.end()) xtemp.push_back(hash(key,value));
+        else it->value=value;
+    }
+    
+    int get(int key) {
+        vector<hash>::iterator it=search(key);
+        if (it==xtemp.end()) return -1;
+        return it->value;
+    }
+    
+    void remove(int key) {
+        vector<hash>::iterator it=search(key);
+        if (it!=xtemp.end())
+        xtemp.erase(it);
+    }
+};
+
+/**
+ * Your MyHashMap object will be instantiated and called as such:
+ * MyHashMap* obj = new MyHashMap();
+ * obj->put(key,value);
+ * int param_2 = obj->get(key);
+ * obj->remove(key);
+ */
