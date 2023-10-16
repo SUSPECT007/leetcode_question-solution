@@ -4,7 +4,7 @@ Given an integer rowIndex, return the rowIndexth (0-indexed) row of the Pascal's
 
 In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
 
-![image](https://github.com/SUSPECT007/leetcode_question/assets/103315098/a0a9cbb8-0616-4359-b78d-3fba7690bf66)
+![image](https://github.com/SUSPECT007/leetcode_question/assets/103315098/ffdae7ea-661c-48d1-9884-4b8f01506aab)
 
 
 Example 1:
