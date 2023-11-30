@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int minimumOneBitOperations(int n) {
+        int x=n,ans=0,i,coefficient=1,k=1,temp=0;
+        while(x){
+            i=x%2;
+            k*=2;
+            if(i==1) coefficient*=-1;
+            temp=i*(k-1)*coefficient;
+            ans=ans-temp;
+            x/=2;
+        }
+        return abs(ans);
+    }
+};
