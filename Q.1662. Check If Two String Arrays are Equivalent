@@ -1,0 +1,15 @@
+class Solution {
+public:
+    string sumstring(vector<string> v){
+        string s;
+        for(vector<string>::iterator it=v.begin();it!=v.end();it++){
+            s+=*it;
+        }
+        return s;
+    }
+    bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
+        string s1=sumstring(word1),s2=sumstring(word2);
+        if(s1==s2) return true;
+        else return false;
+    }
+};
