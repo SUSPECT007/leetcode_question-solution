@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int numberOfMatches(int n) {
+        //return n-1; NOT THE BEST
+        int match=0,count;
+        while(n!=1){
+            count=n/2;
+            match+=count;
+            n=n-count;
+        }
+        return match;
+    }
+};
