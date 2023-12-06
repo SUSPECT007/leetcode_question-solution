@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int totalMoney(int n) {
+      int total=0;
+      if(n<=7){
+        for(int i=1;i<=n;++i){
+            total+=i;
+        }
+        return total;
+        }
+        int week=n/7,base=1+2+3+4+5+6+7,m=n-week*7,s=0;
+        for(int i=1;i<week;i++){
+          s+=i;
+        }
+        total=base*week+7*s;
+        for(int i=1;i<=m;++i){
+            total+=i;
+        }
+        total+=m*week;
+        return total;
+    }
+};
