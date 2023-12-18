@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int maxProductDifference(vector<int>& nums) {
+        int min9=INT_MAX,min0=min9,max0=INT_MIN,max9=max0;
+        for(int t:nums){
+            if (t>max9){max0=max9;max9=t;}
+            else if (t>max0){max0=t;}
+            if (t<min0){min9=min0;min0=t;}
+            else if(t<min9) {min9=t;}
+        }
+        return max9*max0-min0*min9;
+    }
+};
