@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<vector<int>> imageSmoother(vector<vector<int>>& img) {
+        int m=img.size(),n=img[0].size();
+        vector<vector<int>>  ans(m,vector<int>(n,0));
+        for(int i=0;i<m;++i){
+            for(int j=0;j<n;++j){
+                ans[i][j]=solve(img,i,j);
+            }
+        }
+        return ans;
+    }
+
+private:
+    int solve(const vector<vector<int>>& img,int a,int b){
+        int m=img.size(),n=img[0].size(),count=0,sum=0;
+        for(int i=-1;i<=1;++i){
+            for(int j=-1;j<=1;++j){
+                int newa=a+i,newb=j+b;
+                if(newa<0||newb<0||newa>=m||newb>=n) continue;
+                sum+=img[newa][newb];
+                ++count;
+
+            }
+        }
+        return sum/count;
+
+
+    }
+};
