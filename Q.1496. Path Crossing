@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool isPathCrossing(string path) {
+        map<char,pair<int,int>> ch;
+        ch['N']={0,1};
+        ch['S']={0,-1};
+        ch['E']={1,0};
+        ch['W']={-1,0};
+        set<string> points;
+        points.insert("0,0");
+        int x=0,y=0,dx,dy;
+        for (char c: path){
+            pair<int,int> temp=ch[c];
+            dx=temp.first; dy=temp.second;
+            x+=dx;y+=dy;
+            string cur= to_string(x) + "," + to_string(y);
+            if(points.find(cur)!=points.end()) return true;
+            points.insert(cur);
+        }
+        return false;
+
+        
+    }
+};
