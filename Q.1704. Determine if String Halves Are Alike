@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool judge(char c){
+        if(c=='a'||c=='e'||c=='i'||c=='o'||c=='u'||c=='A'||c=='E'||c=='I'||c=='O'||c=='U')
+            return true;
+        else return false;
+    }
+    bool halvesAreAlike(string s) {
+        int n=s.size(),a=n/2,na=0,nb=0;
+        for(int i=0;i<a;++i){
+            if (judge(s[i])) ++na;
+        }
+        for(int i=a;i<n;++i){
+            if (judge(s[i])) ++nb;
+        }
+        return na==nb;
+
+    }
+};
