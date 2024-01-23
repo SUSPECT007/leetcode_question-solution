@@ -1,0 +1,18 @@
+class Solution {
+public:
+    vector<vector<int>> findWinners(vector<vector<int>>& matches) {
+        map<int,int> player;
+        vector<vector<int>> ans(2);
+        int n=matches.size();
+        for (vector<int> match :matches){
+            player[match[0]];
+            if(player[match[1]]<=0) player[match[1]]--; 
+        }
+        for (map<int,int>::iterator it=player.begin();it!=player.end();it++){
+            if (it->second==0) ans[0].push_back(it->first);
+            else if (it->second==-1) ans[1].push_back(it->first);
+
+        }
+        return ans;
+    }
+};
