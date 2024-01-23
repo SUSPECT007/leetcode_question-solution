@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int buyChoco(vector<int>& prices, int money) {
+        int m0=100,m9=100;
+        for(int p:prices){
+            if (p<m9){m0=m9;m9=p;}
+            else if(p<m0){m0=p;}
+        }
+        int debt=m0+m9;
+        if (money>=debt) return money-debt;
+        else return money;
+    }
+};
