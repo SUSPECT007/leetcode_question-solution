@@ -1,0 +1,21 @@
+bool cmp_max(int a,int b){return a>b;}
+class Solution {
+public:
+    int findLeastNumOfUniqueInts(vector<int>& arr, int k) {
+        map<int,int> num;
+        for(int x:arr) num[x]++;
+        vector<int> ans;
+        for(auto it=num.begin();it!=num.end();it++) ans.push_back(it->second);
+        sort(ans.begin(),ans.end(),cmp_max);
+        while(k){
+            if(k>=ans.back()){
+                k-=ans.back();
+                ans.pop_back();
+            }
+            else break;
+        }
+        return ans.size();
+        
+
+    }
+};
