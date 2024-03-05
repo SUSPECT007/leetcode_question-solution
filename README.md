@@ -51,15 +51,15 @@ Output: 0
 
 Explanation: An optimal sequence of operations is:
 
-- Take prefix = "c" and suffix = "c" and remove them, s = "abaaba".
-- 
-- Take prefix = "a" and suffix = "a" and remove them, s = "baab".
-- 
-- Take prefix = "b" and suffix = "b" and remove them, s = "aa".
-- 
-- Take prefix = "a" and suffix = "a" and remove them, s = "".
+Take prefix = "c" and suffix = "c" and remove them, s = "abaaba".
 
-- 
+Take prefix = "a" and suffix = "a" and remove them, s = "baab".
+
+Take prefix = "b" and suffix = "b" and remove them, s = "aa".
+
+Take prefix = "a" and suffix = "a" and remove them, s = "".
+
+
 Example 3:
 
 Input: s = "aabccabba"
@@ -68,9 +68,9 @@ Output: 3
 
 Explanation: An optimal sequence of operations is:
 
-- Take prefix = "aa" and suffix = "a" and remove them, s = "bccabb".
-- 
-- Take prefix = "b" and suffix = "bb" and remove them, s = "cca".
+Take prefix = "aa" and suffix = "a" and remove them, s = "bccabb".
+
+Take prefix = "b" and suffix = "bb" and remove them, s = "cca".
 
 
 
