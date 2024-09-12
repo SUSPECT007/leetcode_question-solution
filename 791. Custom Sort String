@@ -1,0 +1,21 @@
+class Solution {
+public:
+    string customSortString(string order, string s) {
+        map<char,int> count;
+        string ans;
+        for(char ch:order){
+            count[ch]=0;
+        }
+        for(char ch:s){
+            if(count.find(ch)!=count.end()) count[ch]++;
+        }
+        for(char ch:order){
+            ans.append(count[ch],ch);
+        }
+        for(char ch:s){
+            if(count.find(ch)==count.end()) ans+=ch;
+        }
+        return ans;
+
+    }
+};
