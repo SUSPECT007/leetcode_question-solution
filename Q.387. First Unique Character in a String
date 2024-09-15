@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        vector<int> ch(26,0);
+        int n=s.size(),x,min=n,pos=26,i;
+        for(i=0;i<n;++i){
+            x=s[i]-'a';
+            if (ch[x]==0) ch[x]+=(i+1);
+            else ch[x]-=(i+1);
+        }
+        for(i=0;i<26;++i){
+            if(ch[i]<=0) continue;
+            if(ch[i]<=min) {
+                min=ch[i];
+                pos=i;
+            }
+        }
+        if(pos==26)  return -1;
+        char c='a'+pos;
+        for(i=0;i<n;++i){
+            if(s[i]==c) return i;
+        }
+        return -1;
+    }
+};
