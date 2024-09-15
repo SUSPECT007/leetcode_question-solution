@@ -1,0 +1,24 @@
+class Solution {
+
+    long long cal(long n){
+        return 0.5*n*(1+n);
+    }
+public:
+
+
+    long long zeroFilledSubarray(vector<int>& nums) {
+        
+        int n=nums.size();
+        long num=0,pos;
+        long long ans=0; 
+        for(int i=0;i<n;i++){
+            if(nums[i]==0) ++num;
+            else if(num!=0){
+                ans=cal(num)+ans;
+                num=0;
+            }
+
+        }
+        return ans+cal(num);//maybe last of nums is '0', exit the loop,but the cal(num) not +ans
+    }
+};
