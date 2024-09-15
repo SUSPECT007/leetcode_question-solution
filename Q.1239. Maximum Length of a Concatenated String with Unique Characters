@@ -1,0 +1,36 @@
+class Solution {
+    void solve_q(const vector<string>& arr,int index, int charbit, int & maxlength){
+        if(index==arr.size()){
+            int count=0;
+            for(int i=0;i<26;++i){
+                if(charbit & (1<<i)) ++count;
+            }
+            maxlength=max(count,maxlength);
+            return;
+        }
+        bool isvalid=true;
+        int newcharbit=charbit,bit;
+        for(char c:arr[index]){
+            bit=1<<(c-'a');
+            if ((newcharbit & bit) == 0) newcharbit |= bit;
+            else {
+                isvalid=false;
+                break;
+            } 
+        }
+        if(isvalid) solve_q(arr,index+1,newcharbit,maxlength);
+        solve_q(arr,index+1,charbit,maxlength);
+    }
+
+public:
+    int maxLength(vector<string>& arr) {
+        int maxlength=0;
+
+        solve_q(arr,0,0,maxlength);
+
+        return maxlength;
+
+        
+
+    }
+};
