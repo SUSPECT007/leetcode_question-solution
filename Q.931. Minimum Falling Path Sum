@@ -1,0 +1,32 @@
+class Solution {
+public:
+
+int minvector (const vector<int> &v){
+    int ans=INT_MAX;
+    int n=v.size();
+    for(int i=0;i<n;++i ){
+        if(v[i]<ans) ans=v[i];
+    }
+    return ans;
+
+
+}
+
+
+    int minFallingPathSum(vector<vector<int>>& matrix) {
+        int n =matrix.size();
+        if (n==1) return matrix[0][0];
+        else {
+            for (int r=1;r<n;++r)
+            for (int c=0;c<n;++c){
+                int up,r_up,l_up;
+                up=matrix[r-1][c];
+                if (c>0) r_up=matrix[r-1][c-1]; else r_up=up;
+                if (c<n-1) l_up=matrix[r-1][c+1];else l_up=up;
+                int min_s=min(up,min(r_up,l_up));
+                matrix[r][c]+=min_s;
+            }
+            return minvector(matrix[n-1]);
+        }
+    }
+};
