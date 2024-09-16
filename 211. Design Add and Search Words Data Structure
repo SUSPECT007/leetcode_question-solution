@@ -1,0 +1,87 @@
+class WordDictionary {
+    bool isend;
+    vector<WordDictionary*> son;
+    bool sub_search(WordDictionary* node,int pos,const string & w){
+        if(node==NULL) return false;
+        if(pos==w.size()) return node->isend;
+        if (w[pos]=='.'){
+            //if(node&&pos==w.size() &&node->isend) return true;
+            ++pos;
+            for (int i=0;i<26;i++)
+                 {if(sub_search(node->son[i], pos,w))return true;}
+            return false;
+        }
+        else{
+            int x=w[pos]-'a';
+            //node=node->son[x];
+            //if(node&&pos==w.size()-1 && node->isend) return true;
+            ++pos;
+            //if(node->son[x]) 
+            return sub_search(node->son[x], pos,w);
+        }
+        
+        return false;
+
+
+    }
+public:
+    WordDictionary():isend(false), son(26) {
+    }
+    
+    void addWord(string word) {
+        WordDictionary* node=this;int x;
+        for (char ch:word){
+            x=ch-'a';
+            if(!node->son[x])node->son [x]=new WordDictionary;
+            node=node->son[x];
+        }
+        node->isend=true;
+        
+    }
+    
+    bool search(string word) {
+        WordDictionary* node=this;
+        return sub_search( node,0,word);
+    }
+};
+
+/**
+ * Your WordDictionary object will be instantiated and called as such:
+ * WordDictionary* obj = new WordDictionary();
+ * obj->addWord(word);
+ * bool param_2 = obj->search(word);
+ */
+ 
+ 
+ 
+ 
+ //*********************************************************************ANSWER2*******************************************************************//
+ 
+class WordDictionary {
+    map<int ,vector<string>> words;
+    bool judge(const string&  str1,const string&  str2){
+        for (int i=0;i<str1.size();i++){
+            if (str2[i]=='.') continue;
+            if(str1[i]!=str2[i]) return false;
+        }
+        return true;
+
+    }
+    
+public:
+    WordDictionary() {
+    }
+    
+    void addWord(string word) {
+       int n=word.size();
+       words[n].push_back(word);
+        
+    }
+    
+    bool search(string word) {
+        int n=word.size();
+        for(auto &s:words[n])
+            if (judge(s,word)) return true;
+        return false;
+    }
+};
