@@ -1,0 +1,27 @@
+class Solution {
+    void dfs(vector<bool>& judge,int & ans,int index,const vector<pair<int,int>> adj[] ){
+        if (judge[index]) return;
+        judge[index] = true;
+        for(auto & x: adj[index]){
+            if(ans>x.second) ans=x.second;
+            dfs(judge,ans,x.first,adj);
+        }
+    }
+
+
+
+public:
+    int minScore(int n, vector<vector<int>>& roads) {
+        int ans=100000;
+        vector<pair<int,int>> adj[n+1];
+        vector<bool> isvisited(n+1);
+        for (int i=0;i<roads.size();i++){
+
+            adj[roads[i][0]].push_back(make_pair(roads[i][1],roads[i][2]));
+            adj[roads[i][1]].push_back(make_pair(roads[i][0],roads[i][2]));
+        }
+        dfs(isvisited,ans,1,adj);
+        return ans;
+        
+    }
+};
