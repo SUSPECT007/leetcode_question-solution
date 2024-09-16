@@ -1,0 +1,27 @@
+class Solution {
+    void BFS(int pos,vector<bool>& v,const vector<vector<int>>& connect,int &ans){
+        //if(v[pos]) return;
+        v[pos]=true;
+        for(int x: connect[pos]){
+            if(!v[abs(x)]) {
+                if(x>0) ++ans;
+                BFS(abs(x),v,connect,ans);
+            }
+            
+        }
+    }
+public:
+    int minReorder(int n, vector<vector<int>>& connections) {
+        int count=0;
+        vector<vector<int>> connect(n) ;
+        vector<bool> visited(n,false);
+        
+        for (vector<int> & x: connections){
+            connect[x[0]].push_back(x[1]);
+            connect[x[1]].push_back(-x[0]);
+        }
+        BFS(0,visited,connect,count);
+
+        return count;
+    }
+};
