@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        int n = s.size();
+        stack<char> tool;
+        int a=0,b=0,c=0;
+        for (int i =0; i<n;i=i+1)
+        {
+            // if (s[i]=='(' && s[i+1]!=')')  return false;
+            // if (s[i]=='[' && s[i+1]!=']')   return false;
+            // if (s[i]=='{' && s[i+1]!='}')   return false;
+            if (s[i]=='(') tool.push(s[i]);
+            else if (s[i]==')' ) 
+                    if(!tool.empty() && '('==tool.top()) tool.pop();
+                    else return false;
+            if (s[i]=='{' ) tool.push(s[i]);
+            else if (s[i]=='}' )
+                    if(!tool.empty() && '{'==tool.top()) tool.pop();
+                    else return false;
+            if (s[i]=='[') tool.push(s[i]);
+            else if (s[i]==']' )
+                    if(!tool.empty() && '['==tool.top() ) tool.pop();
+                    else return false;
+        }
+       if (tool.empty()) 
+       return true; 
+        else return false;
+    }
+};
