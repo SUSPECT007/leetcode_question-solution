@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int maxWidthOfVerticalArea(vector<vector<int>>& points) {
+        vector<int> x;
+        for(vector<int> temp: points){
+            x.push_back(temp[0]);
+        }
+        sort(x.begin(),x.end());
+        int widest=x[1]-x[0];
+        for(int i=1;i<x.size();++i){
+            if(x[i]-x[i-1]>widest) widest=x[i]-x[i-1];
+
+        }
+        return widest;
+    }
+};
