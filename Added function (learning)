@@ -1,0 +1,55 @@
+1.isdigit();
+The isdigit(c) is a function in C which can be used to check if the passed character is a digit or not. It returns a non-zero value if it’s a digit else it returns 0. For example, it returns a non-zero value for ‘0’ to ‘9’ and zero for others.
+
+The isdigit() is declared inside ctype.h header file.
+It is used to check whether the entered character is a numeric character[0 – 9] or not.
+It takes a single argument in the form of an integer and returns the value of type int.
+Even though isdigit() takes an integer as an argument, the character is passed to the function. Internally, the character is converted to its ASCII value for the check.
+Header File:
+
+#include <ctype.h>
+Syntax:
+
+std::isdigit(int arg)
+Parameter: The template std::isdigit() accepts a single parameter of integer type.
+
+Return type: This function returns an integer value on the basis of the argument passed to it, if the argument is a numeric character then it returns a non-zero value(true value), otherwise it returns zero(false value).
+
+https://blog.csdn.net/xu734816038/article/details/45849565
+
+2.C++中的字符串（String）和数值转换
+
+『String类型的字符串』
+这里数值和字符串相互转换的例子，使用的是stringstream函数，在c++11当中有定义好的现成的函数取调用，非常方便。
+
+1.【字符串转换为数值】
+
+string和数值转换	转换类型
+to_string(val)	把val转换成string
+stoi(s,p,b)	把字符串s从p开始转换成b进制的int
+stol(s,p,b)	把字符串s从p开始转换成b进制的long
+stoul(s,p,b)	把字符串s从p开始转换成b进制的unsigned long
+stoll(s,p,b)	把字符串s从p开始转换成b进制的long long
+stoull(s,p,b)	把字符串s从p开始转换成b进制的unsigned long long
+stof(s,p)	把字符串s从p开始转换成float
+stod(s,p)	把字符串s从p开始转换成double
+stold(s,p)	l把字符串s从p开始转换成long double
+
+2.【数值转换为字符串】
+
+用stringstream即可把多种数值类型转换为String类型的字符串
+
+『Char数组类型的字符串』
+这里是使用C语言提供了几个标准库函数，可以将任意类型(整型、长整型、浮点型等)的数字和字符串相互转换。
+
+ 
+
+字符串和数值转换	作用
+ atof(s)	将字符串s[n]转换为双精度浮点型值。
+ atoi(s)	将字符串s[n]转换为整型值。
+ atol(s)	将字符串s[n]转换为长整型值。
+strtod(s,*p,b)	将字符串s[n]转换为b进制双精度浮点型值，到p停止,并报告不能被转换的所有剩余数字。
+strtol(s,*p,b)	将字符串s[n]转换为b进制长整值，到p停止,并报告不能被转换的所有剩余数字。
+strtoul(s,*p,b)	将字符串s[n]转换为b进制无符号长整型值，到p停止,并报告不能被转换的所有剩余数字。
+
+https://blog.csdn.net/sinat_40872274/article/details/81367815
