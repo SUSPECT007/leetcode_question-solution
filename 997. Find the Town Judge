@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int findJudge(int n, vector<vector<int>>& trust) {
+        int ans=-1;
+        vector<int> trusted(n+1,0),trusting(n+1,0);
+        for(vector<int> v:trust){
+            trusting[v[0]]++;
+            trusted[v[1]]++;
+        }
+        for(int i=1;i<n+1;++i){
+            if(trusting[i]==0&&trusted[i]==n-1) ans=i;
+        }
+        return ans;
+    }
+};
