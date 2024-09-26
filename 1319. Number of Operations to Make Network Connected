@@ -1,0 +1,30 @@
+class Solution {
+    void dfs(int index, vector<bool>& v,const vector<vector<int>> & adj ){
+        v[index] =true;
+        for (auto x:adj[index]){
+            if (!v[x]) dfs(x,v,adj);
+        }
+
+
+    }
+public:
+    int makeConnected(int n, vector<vector<int>>& connections) {
+        int c=connections.size();
+        vector<bool> visited(n,false);
+        if (n-1>c) return -1;
+        int count=0;
+        vector<vector<int>> connect(n);
+        for(int i=0;i<c;i++){
+            connect[(connections[i][0])].push_back(connections[i][1]);
+            connect[(connections[i][1])].push_back(connections[i][0]);
+        }
+        for (int i=0;i<n;i++){
+            if(!visited[i]){
+                ++count;
+                dfs(i, visited, connect );
+            }
+        }
+
+        return --count;
+    }
+};
