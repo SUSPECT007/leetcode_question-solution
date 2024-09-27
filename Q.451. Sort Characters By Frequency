@@ -1,0 +1,22 @@
+class Solution {
+
+public:
+    string frequencySort(string s) {
+        map<char,int> charcount;
+        for(char c : s){
+            charcount[c]++;
+        }
+        vector<char> sortchar;
+        for (map<char,int> ::iterator it=charcount.begin();it!=charcount.end();it++){
+            sortchar.push_back(it->first);
+        }
+        sort ( sortchar.begin(),sortchar.end(), [&](char a,char b) {
+            return charcount[a]>charcount[b];
+            });
+        string ans;
+        for (auto ch:sortchar){
+            ans+=string(charcount[ch],ch);
+        }
+        return ans;
+    }
+};
