@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int maxFrequencyElements(vector<int>& nums) {
+         int ans=0,maxc=0,c;
+         map<int,int> count;
+         for(int x:nums){
+             c=++count[x];
+             if(c>maxc){maxc=c;ans=maxc; }
+             else if(c==maxc){ans+=c;}
+
+         }
+         return ans;
+    }
+};
