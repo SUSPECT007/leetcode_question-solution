@@ -1,0 +1,29 @@
+class Solution {
+    void dfs(vector<bool>&v,long long& count,int pos, map<int,vector<int>>& adj ){
+        v[pos]=true;++count;
+        for(auto& x : adj[pos]){
+            if(!v[x]) dfs(v,count,x,adj);
+        }
+    }
+public:
+    long long countPairs(int n, vector<vector<int>>& edges) {
+        long long ans,count;
+        map<int,vector<int>> adj;
+        vector<bool> visited(n,false);
+        for(auto& x:edges){
+            adj[x[0]].push_back(x[1]);
+            adj[x[1]].push_back(x[0]);
+        }
+        ans=0.5*n*(n-1);
+        for(int i=0;i<n;i++){
+            count=0;
+            if (!visited[i]){
+                dfs(visited,count,i,adj);
+                ans-=0.5*count*(count-1);
+
+            }
+        }
+        return ans;
+        
+    }
+};
