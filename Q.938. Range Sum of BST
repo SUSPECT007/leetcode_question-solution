@@ -1,0 +1,42 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+
+int sum=0; 
+    int solve(TreeNode* root, int low, int high){
+        if(root){
+            TreeNode* p=root;
+            solve(root->left,low,high);
+            if(p->val>=low&&p->val<=high) sum+=p->val;
+            solve(root->right,low,high);
+
+
+        }
+        return sum;
+
+
+
+    }
+
+    int rangeSumBST(TreeNode* root, int low, int high) {
+        if(!root) return sum;
+        // TreeNode* p=root;
+        // if(p->val>=low&&p->val<=high) sum+=p->val;
+        // else if (p->val<low) return rangeSumBST(p->right, low, high);
+        // else if (p->val>high) return rangeSumBST(p->left, low, high);
+        solve (root,low,high);
+        return sum;
+
+
+    }
+};
