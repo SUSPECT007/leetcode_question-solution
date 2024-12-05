@@ -1,0 +1,20 @@
+class Solution {
+public:
+int GetN(vector<int>& nums,int a ){
+    int n=0;
+    for(int x:nums){
+        if (x<=a) {a-=x;n++;}
+    }
+    return n;
+}
+
+
+    vector<int> answerQueries(vector<int>& nums, vector<int>& queries) {
+        sort(nums.begin(),nums.end());
+        vector<int> ans;
+        for(int a :queries){
+            ans.push_back(GetN(nums,a));
+        }
+        return ans;
+    }
+};
