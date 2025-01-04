@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int countPalindromicSubsequence(string s) {
+        unordered_map<char,pair<int,int>> marker;
+        int n=s.size(),ans=0;
+        for(int i=0;i<n;++i){
+            if (marker.find(s[i])==marker.end())
+                {marker[s[i]].first=i;}
+            marker[s[i]].second=i;
+        }
+        for(auto&[ch,position]:marker){
+            int left=position.first,right=position.second;
+            if(right-left<=1) continue;
+            unordered_set<char> uniquechar;
+            for(int i=left+1;i<right;++i){
+                uniquechar.insert(s[i]);
+            }
+            ans+=uniquechar.size();
+        }
+        return ans;
+    }
+};
