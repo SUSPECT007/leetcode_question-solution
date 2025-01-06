@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<int> minOperations(string boxes) {
+        int n = boxes.size();
+        vector<int> ans(n,0);
+        int left=0,leftmove=0;
+        int right=0,rightmove=0;
+        for(int i=0;i<n;++i){
+            ans[i]+=leftmove;
+            left+=boxes[i]-'0';
+            leftmove+=left;
+            int j=n-i-1;
+            ans[j]+=rightmove;
+            right+=boxes[j]-'0';
+            rightmove+=right;
+
+        }
+        return ans;
+    }
+};
