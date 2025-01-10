@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<string> wordSubsets(vector<string>& words1, vector<string>& words2) {
+        vector<string> ans;
+        vector<int> maxcount(26,0);
+        for(string & word:words2){
+            int count[26]={0};
+            for(char ch: word ){
+                ++count[ch-'a'];
+            }
+            for (int i=0;i<26;++i){
+                maxcount[i]=max(maxcount[i],count[i]);
+            }
+        }
+
+        for(string & word:words1){
+            int count[26]={0};
+            for(char ch: word ){
+                ++count[ch-'a'];
+            }
+            bool issubset=true;
+            for (int i=0;i<26;++i){
+                if(maxcount[i]>count[i]){
+                    issubset=false;
+                    break;
+                }
+            }
+            if(issubset) ans.push_back(word);
+        }
+        return ans;
+        
+    }
+};
