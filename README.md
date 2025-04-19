@@ -42,7 +42,7 @@ Constraints:
 
 nums.length == n
 
--{10^9} <= nums[i] <= 109
+-10^9 <= nums[i] <= 109
 
 -109 <= lower <= upper <= 109
 
