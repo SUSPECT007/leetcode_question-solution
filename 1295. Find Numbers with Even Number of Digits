@@ -1,0 +1,15 @@
+class Solution {
+    int nofx(int x){
+        int n=0;
+        while(x) {++n;x/=10;}
+        return n;
+    }
+public:
+    int findNumbers(vector<int>& nums) {
+        int cnt=0;
+        for(int x:nums){
+            if(nofx(x)%2==0) ++cnt;
+        }
+        return cnt;
+    }
+};
