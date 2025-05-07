@@ -1,0 +1,19 @@
+class Solution {
+    long long cntnum(const vector<int>& nums, int line){
+        long long ans=0;
+        for(int i=0,j=nums.size()-1; i<j;++i){
+            while(nums[i]+nums[j]>line && j>i) --j;            
+            ans+=j-i;
+        }
+        return ans;
+    }
+
+
+public:
+    long long countFairPairs(vector<int>& nums, int lower, int upper) {
+        sort(nums.begin(),nums.end());
+        return cntnum(nums,upper)-cntnum(nums,lower-1);
+
+
+    }
+};
