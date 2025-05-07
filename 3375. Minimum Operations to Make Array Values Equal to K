@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int k) {
+        set<int> s;
+        int mi=INT_MAX;
+        for(int x:nums){
+            if(x<k) return -1;
+            mi=min(x,mi);
+            s.insert(x);
+        }
+        int ans;
+        ans=s.size()-(mi==k);
+        return ans;
+    }
+};
