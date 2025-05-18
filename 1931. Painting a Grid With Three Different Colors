@@ -1,0 +1,51 @@
+typedef long long LL;
+LL M=1e9+7;
+class Solution {
+    bool check(int s,int t,int m){
+        for(int i=0;i<m;++i){
+            if(s%3==t%3) return false;
+            s/=3;
+            t/=3;
+        }
+        return true;
+    }
+public:
+    int colorTheGrid(int m, int n) {
+        vector<int> sstate;
+        for(int state=0;state<pow(3,m);++state){
+            int statet=state;
+            int flag=1;
+            vector<int> temp;
+            for(int i=0;i<m;++i){
+                int color=statet%3;
+                if(!temp.empty() && temp.back()==color){
+                    flag=0;
+                    break;
+                }
+                statet/=3;
+                temp.push_back(color);
+            }
+            if(flag) sstate.push_back(state);
+        }
+        LL ans=0;
+        int k=sstate.size();
+        vector<LL> dp(k,1),dpt(k);
+        for(int i=1;i<n;++i){
+            for(int s=0;s<k;++s){
+                dpt[s]=0;
+                for(int t=0;t<k;++t){
+                    if(check(sstate[s],sstate[t],m))
+                        dpt[s]=(dpt[s]+dp[t])%M;
+                }
+            }
+            swap(dp,dpt);
+        }
+        for(int i=0;i<k;++i){
+            ans=(ans+dp[i])%M;
+        }
+        return ans;
+
+
+
+    }
+};
