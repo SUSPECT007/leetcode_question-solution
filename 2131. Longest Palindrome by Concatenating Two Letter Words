@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int longestPalindrome(vector<string>& words) {
+        vector<vector<int>> p(26,vector<int>(26,0));
+        int ans=0,middle=0,x,y;
+        for(const string& w:words){
+            x=w[0]-'a';y=w[1]-'a';
+            if(p[y][x]>0){
+                p[y][x]--;
+                ans+=4;
+                if(x==y) middle--;
+            }
+            else{
+                p[x][y]++;
+                if(x==y) middle++;
+            }
+
+        }
+        if(middle) ans+=2;
+        return ans;
+    }
+};
