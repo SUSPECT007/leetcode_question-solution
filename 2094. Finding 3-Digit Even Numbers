@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> findEvenNumbers(vector<int>& digits) {
+        vector<int> ans,cdigit(10,0);
+        int hun,ten,ni;
+        for(int d :digits) ++cdigit[d];
+        for(int i=100;i<999;i=i+2){
+            ni=i%10;
+            ten=(i/10)%10;
+            hun=i/100;
+            cdigit[ni]--;
+            cdigit[ten]--;
+            cdigit[hun]--;
+            if(cdigit[ni]>=0 && cdigit[ten]>=0 && cdigit[hun]>=0)
+                ans.push_back(i);
+            cdigit[ni]++;
+            cdigit[ten]++;
+            cdigit[hun]++;
+
+        }
+        return ans;
+    }
+};
