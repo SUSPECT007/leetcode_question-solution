@@ -1,0 +1,20 @@
+class Solution {
+
+public:
+const int MOD = 1e9 + 7;
+    int lengthAfterTransformations(string s, int t) {
+        long long ans=0;
+        vector<long long> dp(t+26);
+        for(int i=0;i<26;++i){
+            dp[i]=1;
+        }
+        for(int i=26;i<t+26;++i){
+            dp[i]=(dp[i-26]+dp[i-25])%MOD;
+        }
+        for(char c:s){
+            ans=(ans+dp[c-'a'+t])%MOD;
+        }
+        return ans;
+
+    }
+};
